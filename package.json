@@ -1,0 +1,26 @@
+{
+  "name": "familyfeud",
+  "productName": "Family Feud",
+  "version": "1.0.0",
+  "description": "Family Feud Emulation Game",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayi102/familyFeud.git"
+  },
+  "author": "Ali Y. Ismail",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ayi102/familyFeud/issues"
+  },
+  "homepage": "https://github.com/ayi102/familyFeud#readme",
+  "dependencies": {
+    "election": "^0.0.0",
+    "electron": "^25.3.1",
+    "resize-img": "^2.0.0",
+    "toastify": "^2.0.1"
+  }
+}
