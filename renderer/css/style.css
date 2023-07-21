@@ -658,11 +658,6 @@ video {
   border-color: transparent;
 }
 
-.bg-teal-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 118 110 / var(--tw-bg-opacity));
-}
-
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -799,4 +794,16 @@ video {
 
 .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
+}
+
+/* Family Feud Specific Style*/
+.bg-familyFeudStartScreen {
+  background-image: url("../images/familyFeudLogo.png");
+  background-color: transparent;
+  background-size: cover;
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 100 100 / var(--tw-bg-opacity));
 }
