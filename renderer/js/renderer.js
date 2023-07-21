@@ -1,15 +1,12 @@
-const form = document.querySelector('#img-form');
-const img  = document.querySelector('#img');
-const outputPath  = document.querySelector('#output-path');
-const filename    = document.querySelector('#filename');
-const heightInput = document.querySelector('#height');
-const widthInput  = document.querySelector('#width');
+const startBtn = document.getElementById("startBtn");
 
-function loadImage(e)
+// Event Listeners
+
+// When user presses start button, start the first round
+startBtn.addEventListener("click", startRound, 1);
+
+// Display start round
+ function startRound(round)
 {
-    const file = e.target.files[0];
+    startBtn.style.display = 'none';
 }
-
-// Make sure file is image
-
-img.addEventListener('change', loadImage);

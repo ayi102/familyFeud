@@ -807,3 +807,25 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(100 100 100 / var(--tw-bg-opacity));
 }
+
+.bt-play {
+  background-color: #021d50;
+  position: absolute;
+  top: 90%;
+  left: 39%;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 12px;
+  width: 450px;
+  cursor: pointer;
+}
+
+.bt-play a {
+  display: block;
+  padding: 10px;
+}
+
+
+.bt-play:hover {background-color: #0345be}
