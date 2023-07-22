@@ -799,8 +799,29 @@ video {
 /* Family Feud Specific Style*/
 .bg-familyFeudStartScreen {
   background-image: url("../images/familyFeudLogo.png");
-  background-color: transparent;
+  background-color: #1b69fa;
   background-size: cover;
+}
+
+.bg-familyFeudRound1 {
+  width: 1200px;
+  height: 600px;
+  display: none;
+  top: 20%;
+  left: 20%;
+  position: absolute;
+  animation: fadeIn 36s;
+}
+
+@keyframes fadeIn {
+  from
+  {
+    transform: scale(0);
+  }
+  to
+  {
+    transform: scale(1);
+  }
 }
 
 .bg-black {
