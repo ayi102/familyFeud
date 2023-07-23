@@ -810,7 +810,7 @@ video {
   top: 20%;
   left: 20%;
   position: absolute;
-  animation: fadeIn 36s;
+  animation: fadeIn 3s;
 }
 
 @keyframes fadeIn {
@@ -850,3 +850,25 @@ video {
 
 
 .bt-play:hover {background-color: #0345be}
+
+.menu {
+  width: 25%;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: #33b5e5;
+  color: #ffffff;
+}
+
+.column {
+  float: left;
+  padding: 15px;
+}

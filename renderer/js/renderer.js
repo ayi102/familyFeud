@@ -1,6 +1,7 @@
 const startBtn        = document.getElementById("startBtn");
 const round1Img       = document.getElementById("round1Img");
 const familyFeudAudio = document.getElementById("familyFeudAudio");
+const gameBoard       = document.getElementById("gameBoard");
 
 // Event Listeners
 
@@ -16,17 +17,22 @@ function introduceRound(round)
     if(round === 1)
     {
         // Add a listener to detect that the animation ended
-        round1Img.addEventListener('animationend', animationEndCallback);
         familyFeudAudio.play();
         startBtn.style.display              = 'none';
         document.body.style.backgroundImage = 'none';
         round1Img.style.display             = 'inline';
+        familyFeudAudio.addEventListener('ended', () => {playRound(1)});
     }
 }
 
-animationEndCallback = (e) => 
+// Display the round play
+function playRound(round)
 {
-    round1Img.removeEventListener('animationend', animationEndCallback);
-    familyFeudAudio.pause();
-    round1Img.style.display = 'none';
+    if(round === 1)
+    {
+        familyFeudAudio.pause();
+        round1Img.style.display             = 'none';
+        document.body.style.backgroundImage = "url(images/RoundBg.png)";
+        gameBoard.style.display             = 'inline';
+    }
 }
