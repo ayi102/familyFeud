@@ -2,6 +2,7 @@ const startBtn        = document.getElementById("startBtn");
 const round1Img       = document.getElementById("round1Img");
 const familyFeudAudio = document.getElementById("familyFeudAudio");
 const gameBoard       = document.getElementById("gameBoard");
+const guesses         = document.getElementById("guesses");
 
 // Event Listeners
 
@@ -33,6 +34,7 @@ function playRound(round)
         familyFeudAudio.pause();
         round1Img.style.display             = 'none';
         document.body.style.backgroundImage = "url(images/RoundBg.png)";
-        gameBoard.style.display             = 'inline';
+        gameBoard.style.display             = 'grid';
+        guesses.style.display               = 'block';
     }
 }

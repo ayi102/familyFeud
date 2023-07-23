@@ -29,22 +29,19 @@
 
       <audio id="familyFeudAudio" src="audio/familyFeudAudio.mp3" preload="auto"></audio>
 
-      <div id="gameBoard" class="align-center justify-center" style="display:none">
-        <div id="gameBoardLeft" class="column menu" >
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
-        </div>
-        <div id="gameBoardRight" class="column menu">
-          <ul>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-          </ul>
-        </div>
+      <div id="gameBoard" class="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>  
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>  
       </div>
+
+      <div id="guesses" class="input-container">
+        <input class="input-item" id="myGuess" value="">
+      </div>
+
     </div>
   </body>
 </html>
