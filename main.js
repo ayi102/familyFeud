@@ -7,7 +7,7 @@ const isMac = process.platform === 'darwin';
 // Create the main window
 function createMainWindow()
 {
-    const mainWindow = new BrowserWindow({title: "Family Feud", width: isDev ? 1000 : 500, height: 600});
+    const mainWindow = new BrowserWindow({title: "Family Feud", width: 1920, height: 1080});
 
     // Open devtools if in dev env
     if(isDev)

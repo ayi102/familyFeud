@@ -3,6 +3,7 @@ const round1Img       = document.getElementById("round1Img");
 const familyFeudAudio = document.getElementById("familyFeudAudio");
 const gameBoard       = document.getElementById("gameBoard");
 const guesses         = document.getElementById("guesses");
+const questions       = document.getElementById("questions");
 
 // Event Listeners
 
@@ -36,5 +37,6 @@ function playRound(round)
         document.body.style.backgroundImage = "url(images/RoundBg.png)";
         gameBoard.style.display             = 'grid';
         guesses.style.display               = 'block';
+        questions.style.display             = 'block';
     }
 }
