@@ -905,3 +905,14 @@ video {
   background-color: transparent;
   color: white;
 }
+
+.x-container{
+  display: none;
+  background-color: transparent;
+  padding: 0px;
+  position: absolute;
+  top: 15%;
+  left: 33%;
+  animation: fadeIn 1s;
+  z-index: 10;
+}

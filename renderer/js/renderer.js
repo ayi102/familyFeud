@@ -1,6 +1,9 @@
 const startBtn        = document.getElementById("startBtn");
 const round1Img       = document.getElementById("round1Img");
+const redXImg         = document.getElementById("xImg");
 const familyFeudAudio = document.getElementById("familyFeudAudio");
+const fFXAudio        = document.getElementById("familyFeudXAudio");
+const fFYAudio        = document.getElementById("familyFeudYAudio");
 const gameBoard       = document.getElementById("gameBoard");
 const guesses         = document.getElementById("guesses");
 const guess           = document.getElementById("myGuess");
@@ -48,7 +51,19 @@ function parseInput(e)
 {
     if(e.key === 'Enter')
     {
-        // Determine if the guess
+        // Check if the guess is correct
+        if(guess.value === "guess")
+        {
+
+        }
+        else
+        {
+            fFXAudio.play();
+            redXImg.style.display = 'block';
+            fFXAudio.addEventListener('ended', () => {redXImg.style.display = 'none';});
+        }
+
+        // Clear the guess
         guess.value = "";
     }
 }
