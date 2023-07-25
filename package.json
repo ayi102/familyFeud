@@ -20,6 +20,7 @@
   "dependencies": {
     "election": "^0.0.0",
     "electron": "^25.3.1",
+    "requirejs": "^2.3.6",
     "resize-img": "^2.0.0",
     "toastify": "^2.0.1"
   }
