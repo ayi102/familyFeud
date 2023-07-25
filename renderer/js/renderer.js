@@ -8,6 +8,12 @@ const gameBoard       = document.getElementById("gameBoard");
 const guesses         = document.getElementById("guesses");
 const guess           = document.getElementById("myGuess");
 const questions       = document.getElementById("questions");
+let   jsonData = null;
+
+// Setup
+window.addEventListener("DOMContentLoaded", async (event) => {
+    jsonData = await getJson();
+});
 
 // Event Listeners
 
