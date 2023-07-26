@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/renderer.js" defer></script>
+    <script src="js/familyFeud.js" defer></script>
     <title>Family Feud</title>
   </head>
   <body class="bg-familyFeudStartScreen">
@@ -38,12 +39,12 @@
       <audio id="familyFeudYAudio" src="audio/family-feud-good-answer.mp3" preload="auto"></audio>
 
       <div id="gameBoard" class="grid-container">
-        <div class="grid-item">1</div>
-        <div class="grid-item">2</div>
-        <div class="grid-item">3</div>  
-        <div class="grid-item">4</div>
-        <div class="grid-item">5</div>
-        <div class="grid-item">6</div>  
+        <div id="answer1" class="grid-item">1</div>
+        <div id="answer2" class="grid-item">2</div>
+        <div id="answer3" class="grid-item">3</div>  
+        <div id="answer4" class="grid-item">4</div>
+        <div id="answer5" class="grid-item">5</div>
+        <div id="answer6" class="grid-item">6</div>  
       </div>
 
       <div id="guesses" class="input-container">
@@ -51,7 +52,7 @@
       </div>
 
       <div id="questions" class="question-container">
-        <input class="question-item" id="question" value="This is the first question that will be asked all the time.">
+        <input id="myGuestion" type="text" class="question-item" value="as">
       </div>
 
     </div>

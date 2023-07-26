@@ -8,11 +8,20 @@ const gameBoard       = document.getElementById("gameBoard");
 const guesses         = document.getElementById("guesses");
 const guess           = document.getElementById("myGuess");
 const questions       = document.getElementById("questions");
-let   jsonData = null;
+const question        = document.getElementById("myGuestion");
+const gameBoardAnswers= [document.getElementById("answer1"),
+                         document.getElementById("answer2"),
+                         document.getElementById("answer3"),
+                         document.getElementById("answer4"),
+                         document.getElementById("answer5"),
+                         document.getElementById("answer6")];
+
+let familyFeudGamePlay;
 
 // Setup
 window.addEventListener("DOMContentLoaded", async (event) => {
-    jsonData = await getJson();
+    json = await getJson();
+    familyFeudGamePlay = new familyFeud(json);
 });
 
 // Event Listeners
@@ -27,14 +36,17 @@ guesses.addEventListener("keypress", (e) => {parseInput(e)});
 // Display start round
 function introduceRound(round)
 {
+    // Update the round data
+    familyFeudGamePlay.currRound = round;
     if(round === 1)
     {
         // Add a listener to detect that the animation ended
-        familyFeudAudio.play();
+        //familyFeudAudio.play();
         startBtn.style.display              = 'none';
         document.body.style.backgroundImage = 'none';
         round1Img.style.display             = 'inline';
-        familyFeudAudio.addEventListener('ended', () => {displayRound(1)});
+        //familyFeudAudio.addEventListener('ended', () => {displayRound(1)});
+        displayRound(1); // TODO FIX THIS WHEN DONE DEVELOPING
     }
 }
 
@@ -48,6 +60,7 @@ function displayRound(round)
         document.body.style.backgroundImage = "url(images/RoundBg.png)";
         gameBoard.style.display             = 'grid';
         guesses.style.display               = 'block';
+        question.value                      = familyFeudGamePlay.getCurrRoundQuestion();
         questions.style.display             = 'block';
     }
 }
@@ -57,10 +70,13 @@ function parseInput(e)
 {
     if(e.key === 'Enter')
     {
-        // Check if the guess is correct
-        if(guess.value === "guess")
-        {
+        let index = familyFeudGamePlay.checkRoundAnswer(guess.value);
 
+        // Check if the guess is correct
+        if( index !== -1)
+        {
+            gameBoardAnswers[index].textContent = guess.value;
+            fFYAudio.play();
         }
         else
         {
