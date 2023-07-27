@@ -62,10 +62,15 @@ class Round{
 // Declaration
 class familyFeud{
     constructor(feudData) {
-        this.feudData  = feudData;
-        this.currRound = null;
-        this.rounds    = [];
-        this.subtotal  = 0;
+        this.feudData      = feudData;
+        this.currRound     = 1;
+        this.rounds        = [];
+        this.subtotal      = 0;
+        this.fam1Subtotal  = 0;
+        this.fam2Subtotal  = 0;
+        this.currFamily    = 1;
+        this.missedGuesses = 0;
+        this.rightGuesses  = 0;
 
         this.#getRoundsData();
     }
@@ -78,13 +83,18 @@ class familyFeud{
         return this._currRound;
     }
 
-    set subtotal(subtotal){
-        this._subtotal = subtotal;
-    }
-
-    get subtotal()
-    {
-        return this._subtotal;
+    isNoMoreGuesses(){
+        // Subtract 1 from this since the index starts at 1
+        if(this.missedGuesses == 4 || this.rightGuesses == this.rounds[this.currRound - 1].answers.length)
+        {
+            this.missedGuesses = 0;
+            this.rightGuesses  = 0;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     #getRoundsData(){
@@ -104,14 +114,40 @@ class familyFeud{
 
     getCurrRoundQuestion()
     {
-        return this.rounds[this.currRound].question;
+        this.missedGuesses = 0;
+
+        // Subtract 1 from this since the index starts at 1
+        return this.rounds[this.currRound - 1].question;
     }
 
     checkRoundAnswer(answer)
     {
-        let ptsAndIndex = this.rounds[this.currRound].checkAnswer(answer);
+        // Subtract 1 from this since the index starts at 1
+        let ptsAndIndex = this.rounds[this.currRound-1].checkAnswer(answer);
         this._subtotal += ptsAndIndex[0];
 
-        return ptsAndIndex[1];
+        if(ptsAndIndex[1] == -1)
+        {
+            this.missedGuesses++;
+        }
+        else
+        {
+            this.rightGuesses++;
+        }
+
+        return ptsAndIndex;
+    }
+
+    awardPoints(familyId){
+        if(familyId == 1)
+        {
+            this.fam1Subtotal += this._subtotal;
+        }
+        else
+        {
+            this.fam2Subtotal += this._subtotal;
+        }
+
+        this._subtotal = 0;
     }
 }

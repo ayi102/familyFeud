@@ -1,5 +1,7 @@
 const startBtn        = document.getElementById("startBtn");
 const round1Img       = document.getElementById("round1Img");
+const round2Img       = document.getElementById("round2Img");
+const round3Img       = document.getElementById("round3Img");
 const redXImg         = document.getElementById("xImg");
 const familyFeudAudio = document.getElementById("familyFeudAudio");
 const fFXAudio        = document.getElementById("familyFeudXAudio");
@@ -15,6 +17,8 @@ const gameBoardAnswers= [document.getElementById("answer1"),
                          document.getElementById("answer4"),
                          document.getElementById("answer5"),
                          document.getElementById("answer6")];
+const family1Btn      = document.getElementById("family1Btn");
+const family2Btn      = document.getElementById("family2Btn");
 
 let familyFeudGamePlay;
 
@@ -27,42 +31,77 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 // Event Listeners
 
 // When user presses start button, start the first round
-startBtn.addEventListener("click", () => {introduceRound(1)});
+startBtn.addEventListener("click", () => {introduceRound()});
+family1Btn.addEventListener("click", () => {submitPoints(1)});
+family2Btn.addEventListener("click", () => {submitPoints(2)});
 guesses.addEventListener("keypress", (e) => {parseInput(e)});
 
 
 // Functions
 
 // Display start round
-function introduceRound(round)
+function introduceRound()
 {
-    // Update the round data
-    familyFeudGamePlay.currRound = round;
-    if(round === 1)
+    // Add a listener to detect that the animation ended
+    familyFeudAudio.play();
+    family1Btn.style.display            = 'none';
+    family2Btn.style.display            = 'none';
+    startBtn.style.display              = 'none';
+    gameBoard.style.display             = 'none';
+    questions.style.display             = 'none';
+    document.body.style.backgroundImage = 'none';
+
+    if(familyFeudGamePlay.currRound === 1)
     {
-        // Add a listener to detect that the animation ended
-        //familyFeudAudio.play();
-        startBtn.style.display              = 'none';
-        document.body.style.backgroundImage = 'none';
-        round1Img.style.display             = 'inline';
-        //familyFeudAudio.addEventListener('ended', () => {displayRound(1)});
-        displayRound(1); // TODO FIX THIS WHEN DONE DEVELOPING
+        round1Img.style.display = 'inline';
     }
+    else if(familyFeudGamePlay.currRound === 2)
+    {
+        round2Img.style.display = 'inline';
+    }
+    else if(familyFeudGamePlay.currRound === 3)
+    {
+        round3Img.style.display = 'inline';
+    }
+    familyFeudAudio.addEventListener('ended', () => {displayRound(1)});
+    //displayRound(); // TODO FIX THIS WHEN DONE DEVELOPING
+}
+
+function submitPoints(familyId){
+    familyFeudGamePlay.currRound++;
+    familyFeudGamePlay.awardPoints(familyId);
+
+    if(familyFeudGamePlay.currRound < 4)
+    {
+        introduceRound();
+    }
+    else
+    {
+        introduceFinalRound();
+    }
+    
+}
+
+function introduceFinalRound(){
+    console.log("Final Round!");
 }
 
 // Display the round play
-function displayRound(round)
+function displayRound()
 {
-    if(round === 1)
+    for(let i = 0; i < gameBoardAnswers.length; i++)
     {
-        familyFeudAudio.pause();
-        round1Img.style.display             = 'none';
-        document.body.style.backgroundImage = "url(images/RoundBg.png)";
-        gameBoard.style.display             = 'grid';
-        guesses.style.display               = 'block';
-        question.value                      = familyFeudGamePlay.getCurrRoundQuestion();
-        questions.style.display             = 'block';
+        gameBoardAnswers[i].textContent = String(i+1);
     }
+    familyFeudAudio.pause();
+    round1Img.style.display             = 'none';
+    round2Img.style.display             = 'none';
+    round3Img.style.display             = 'none';
+    document.body.style.backgroundImage = "url(images/RoundBg.png)";
+    gameBoard.style.display             = 'grid';
+    guesses.style.display               = 'block';
+    question.value                      = familyFeudGamePlay.getCurrRoundQuestion();
+    questions.style.display             = 'block';
 }
 
 // Parse the entered key
@@ -70,12 +109,12 @@ function parseInput(e)
 {
     if(e.key === 'Enter')
     {
-        let index = familyFeudGamePlay.checkRoundAnswer(guess.value);
+        let ptsAndIndex = familyFeudGamePlay.checkRoundAnswer(guess.value);
 
         // Check if the guess is correct
-        if( index !== -1)
+        if( ptsAndIndex[1] !== -1)
         {
-            gameBoardAnswers[index].textContent = guess.value;
+            gameBoardAnswers[ptsAndIndex[1]].textContent = String(guess.value).concat("(",ptsAndIndex[0], ")");
             fFYAudio.play();
         }
         else
@@ -83,6 +122,14 @@ function parseInput(e)
             fFXAudio.play();
             redXImg.style.display = 'block';
             fFXAudio.addEventListener('ended', () => {redXImg.style.display = 'none';});
+        }
+        if(familyFeudGamePlay.isNoMoreGuesses() == true)
+        {
+            // Display the new screen
+            guesses.style.display    = 'none';
+            question.value           = "Which family won?"
+            family1Btn.style.display = 'block';
+            family2Btn.style.display = 'block';
         }
 
         // Clear the guess

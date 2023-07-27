@@ -803,7 +803,7 @@ video {
   background-size: cover;
 }
 
-.bg-familyFeudRound1 {
+.bg-familyFeudRound {
   width: 1200px;
   height: 600px;
   display: none;
@@ -848,8 +848,49 @@ video {
   padding: 10px;
 }
 
-
 .bt-play:hover {background-color: #0345be}
+
+.bt-familyId1 {
+  background-color: #eb9d0e;
+  position: absolute;
+  top: 90%;
+  left: 20%;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 12px;
+  width: 450px;
+  cursor: pointer;
+}
+
+.bt-familyId1 a {
+  display: none;
+  padding: 10px;
+}
+
+.bt-familyId1:hover {background-color: #0345be}
+
+.bt-familyId2 {
+  background-color: #eb9d0e;
+  position: absolute;
+  top: 90%;
+  left:57%;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 12px;
+  width: 450px;
+  cursor: pointer;
+}
+
+.bt-familyId2 a {
+  display: none;
+  padding: 10px;
+}
+
+.bt-familyId2:hover {background-color: #0345be}
 
 .grid-container {
   display: none;
