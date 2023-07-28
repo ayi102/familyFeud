@@ -19,6 +19,10 @@ const gameBoardAnswers= [document.getElementById("answer1"),
                          document.getElementById("answer6")];
 const family1Btn      = document.getElementById("family1Btn");
 const family2Btn      = document.getElementById("family2Btn");
+const family1ScoreDiv = document.getElementById("family1ScoreDiv");
+const family2ScoreDiv = document.getElementById("family2ScoreDiv");
+const family1Score    = document.getElementById("family1Score");
+const family2Score    = document.getElementById("family2Score");
 
 let familyFeudGamePlay;
 
@@ -64,12 +68,14 @@ function introduceRound()
         round3Img.style.display = 'inline';
     }
     familyFeudAudio.addEventListener('ended', () => {displayRound()});
-    //displayRound(); // TODO FIX THIS WHEN DONE DEVELOPING
 }
 
 function submitPoints(familyId){
     familyFeudGamePlay.currRound++;
     familyFeudGamePlay.awardPoints(familyId);
+
+    family1Score.value = String(familyFeudGamePlay.fam1Subtotal);
+    family2Score.value = String(familyFeudGamePlay.fam2Subtotal);
 
     if(familyFeudGamePlay.currRound < 4)
     {
@@ -102,6 +108,8 @@ function displayRound()
     guesses.style.display               = 'block';
     question.value                      = familyFeudGamePlay.getCurrRoundQuestion();
     questions.style.display             = 'block';
+    family1ScoreDiv.style.display       = 'block';
+    family2ScoreDiv.style.display       = 'block';
 }
 
 // Parse the entered key
@@ -126,10 +134,12 @@ function parseInput(e)
         if(familyFeudGamePlay.isNoMoreGuesses() == true)
         {
             // Display the new screen
-            guesses.style.display    = 'none';
-            question.value           = "Which family won?"
-            family1Btn.style.display = 'block';
-            family2Btn.style.display = 'block';
+            guesses.style.display         = 'none';
+            question.value                = "Which family won?"
+            family1ScoreDiv.style.display = 'none';
+            family2ScoreDiv.style.display = 'none';
+            family1Btn.style.display      = 'block';
+            family2Btn.style.display      = 'block';
         }
 
         // Clear the guess

@@ -73,6 +73,7 @@ class familyFeud{
         this.rightGuesses      = 0;
         this.roundStartSkips   = 0;
         this.isRoundStarted    = false;
+        this.isNum1Answer      = false;
 
         this.#getRoundsData();
     }
@@ -83,6 +84,22 @@ class familyFeud{
 
     get currRound(){
         return this._currRound;
+    }
+
+    set fam1Subtotal(fam1Subtotal){
+        this._fam1Subtotal = fam1Subtotal;
+    }
+
+    get fam1Subtotal(){
+        return this._fam1Subtotal;
+    }
+
+    set fam2Subtotal(fam2Subtotal){
+        this._fam2Subtotal = fam2Subtotal;
+    }
+
+    get fam2Subtotal(){
+        return this._fam2Subtotal;
     }
 
     isNoMoreGuesses(){
@@ -116,10 +133,11 @@ class familyFeud{
 
     getCurrRoundQuestion()
     {
-        this.missedGuesses     = 0;
-        this.rightGuesses      = 0;
-        this.roundStartSkips   = 0;
-        this.isRoundStarted    = false;
+        this.missedGuesses   = 0;
+        this.rightGuesses    = 0;
+        this.roundStartSkips = 0;
+        this.isRoundStarted  = false;
+        this.isNum1Answer    = false;
 
         // Subtract 1 from this since the index starts at 1
         return this.rounds[this.currRound - 1].question;
@@ -129,7 +147,7 @@ class familyFeud{
     {
         // Subtract 1 from this since the index starts at 1
         let ptsAndIndex = this.rounds[this.currRound-1].checkAnswer(answer);
-        this._subtotal += ptsAndIndex[0];
+        this.subtotal += ptsAndIndex[0];
 
         // Only count missed guesses once the game has started
         if(ptsAndIndex[1] === -1 && this.isRoundStarted == true)
@@ -139,6 +157,12 @@ class familyFeud{
         else if(ptsAndIndex[1] !== -1)
         {
             this.rightGuesses++;
+
+            // Check to see if number one answer was discovered
+            if(ptsAndIndex[1] === 0)
+            {
+                this.isNum1Answer = true;
+            }
         }
 
         // If the round hasn't started yet, then check to see if it has
@@ -149,7 +173,7 @@ class familyFeud{
 
             // Check if both teams had a guesses
             // Check if at least on correct answer has ever been given
-            if((this.roundStartSkips % 2 === 0) && this.rightGuesses >= 1)
+            if(((this.roundStartSkips % 2 === 0) && this.rightGuesses >= 1) || this.isNum1Answer === true)
             {
                 this.isRoundStarted = true;
             }
@@ -161,13 +185,13 @@ class familyFeud{
     awardPoints(familyId){
         if(familyId == 1)
         {
-            this.fam1Subtotal += this._subtotal;
+            this._fam1Subtotal += this.subtotal;
         }
         else
         {
-            this.fam2Subtotal += this._subtotal;
+            this._fam2Subtotal += this.subtotal;
         }
 
-        this._subtotal = 0;
+        this.subtotal = 0;
     }
 }

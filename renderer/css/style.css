@@ -957,3 +957,37 @@ video {
   animation: fadeIn 1s;
   z-index: 10;
 }
+
+.score1-container{
+  display: none;
+  background-color: transparent;
+  padding: 0px;
+  position: absolute;
+  top: 90%;
+  left: 20%;
+  border-radius: 12px;
+  border-color: #eb9d0e;
+  border-width: 5px;
+}
+
+.score2-container{
+  display: none;
+  background-color: transparent;
+  padding: 0px;
+  position: absolute;
+  top: 90%;
+  left: 71%;
+  border-radius: 12px;
+  border-color: #eb9d0e;
+  border-width: 5px;
+}
+
+.score-item{
+  margin: auto;
+  padding: 10px;
+  width: 150px;  
+  font-size: 30px;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+}
