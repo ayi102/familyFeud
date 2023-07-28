@@ -3,9 +3,9 @@
     {
         "question": "What is your favorite food?",
         "answers": [
+            "Beef",
             "Chicken",
             "Rice",
-            "Beef",
             "Lamb"
         ],
         "points":[

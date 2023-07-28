@@ -63,7 +63,7 @@ function introduceRound()
     {
         round3Img.style.display = 'inline';
     }
-    familyFeudAudio.addEventListener('ended', () => {displayRound(1)});
+    familyFeudAudio.addEventListener('ended', () => {displayRound()});
     //displayRound(); // TODO FIX THIS WHEN DONE DEVELOPING
 }
 
