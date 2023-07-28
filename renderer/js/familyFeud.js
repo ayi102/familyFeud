@@ -103,6 +103,7 @@ class familyFeud{
     }
 
     isNoMoreGuesses(){
+
         // Subtract 1 from this since the index starts at 1
         if(this.missedGuesses === 4 || this.rightGuesses === this.rounds[this.currRound - 1].answers.length)
         {
@@ -156,7 +157,17 @@ class familyFeud{
         }
         else if(ptsAndIndex[1] !== -1)
         {
-            this.rightGuesses++;
+            // If there were three missed guesses before this right answer, then set the right guesses to the max
+            // There should be nore more right guesses after this
+            if(this.missedGuesses === 3)
+            {
+                this.rightGuesses = this.rounds[this.currRound - 1].answers.length;
+            }
+            else
+            {
+                this.rightGuesses++;
+
+            }
 
             // Check to see if number one answer was discovered
             if(ptsAndIndex[1] === 0)
