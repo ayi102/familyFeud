@@ -83,7 +83,19 @@ function submitPoints(familyId){
     }
     else
     {
-        introduceFinalRound();
+        gameBoard.style.display  = 'none';
+        family1Btn.style.display = 'none';
+        family2Btn.style.display = 'none';
+        family1ScoreDiv.style.display = 'block';
+        family2ScoreDiv.style.display = 'block';
+        if(parseInt(family1Score.value) > parseInt(family2Score.value))
+        {
+            question.value = "Congratulations! Family 1 !"
+        }
+        else
+        {
+            question.value = "Congratulations! Family 2 !"
+        }
     }
     
 }
