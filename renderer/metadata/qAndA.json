@@ -52,5 +52,98 @@
             10,
             10
         ]
+    },
+    "finalRound":
+    {
+        "finalRound1":
+        {
+            "question": "What is your moms name?",
+            "answers" : [
+                "Aziza",
+                "Wijdan",
+                "Jerry",
+                "Bill",
+                "Linda"
+            ],
+            "points":[
+                50,
+                40,
+                30,
+                20,
+                10
+            ]
+        },
+        "finalRound2":
+        {
+            "question": "What is your Dads name?",
+            "answers" : [
+                "Aziza",
+                "Wijdan",
+                "Jerry",
+                "Bill",
+                "Linda"
+            ],
+            "points":[
+                50,
+                40,
+                30,
+                20,
+                10
+            ]
+        },
+        "finalRound3":
+        {
+            "question": "What is your name?",
+            "answers" : [
+                "Aziza",
+                "Wijdan",
+                "Jerry",
+                "Bill",
+                "Linda"
+            ],
+            "points":[
+                50,
+                40,
+                30,
+                20,
+                10
+            ]
+        },
+        "finalRound4":
+        {
+            "question": "What is your favorite car?",
+            "answers" : [
+                "Aziza",
+                "Wijdan",
+                "Jerry",
+                "Bill",
+                "Linda"
+            ],
+            "points":[
+                50,
+                40,
+                30,
+                20,
+                10
+            ]
+        },
+        "finalRound5":
+        {
+            "question": "What is your favorite candy?",
+            "answers" : [
+                "Aziza",
+                "Wijdan",
+                "Jerry",
+                "Bill",
+                "Linda"
+            ],
+            "points":[
+                50,
+                40,
+                30,
+                20,
+                10
+            ]
+        }
     }
 }}

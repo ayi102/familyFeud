@@ -65,6 +65,7 @@ class familyFeud{
         this.feudData          = feudData;
         this.currRound         = 1;
         this.rounds            = [];
+        this.finalRound        = [];
         this.subtotal          = 0;
         this.fam1Subtotal      = 0;
         this.fam2Subtotal      = 0;
@@ -123,11 +124,25 @@ class familyFeud{
         {
             for(var roundData in this.feudData[feudItem])
             {
-                this.rounds.push(new Round(id,
-                                 this.feudData[feudItem][roundData]["question"],
-                                 this.feudData[feudItem][roundData]["answers"],
-                                 this.feudData[feudItem][roundData]["points"]));
-                id += 1;
+                console.log(roundData);
+                if(roundData !== "finalRound")
+                {
+                    this.rounds.push(new Round(id,
+                                    this.feudData[feudItem][roundData]["question"],
+                                    this.feudData[feudItem][roundData]["answers"],
+                                    this.feudData[feudItem][roundData]["points"]));
+                    id += 1;
+                }
+                else
+                {
+                    for(var finalRoundData in this.feudData[feudItem][roundData])
+                    {
+                        this.finalRound.push(new Round(id,
+                                            this.feudData[feudItem][roundData][finalRoundData]["question"],
+                                            this.feudData[feudItem][roundData][finalRoundData]["answers"],
+                                            this.feudData[feudItem][roundData][finalRoundData]["points"]));
+                    }
+                }
             }
         }
     }

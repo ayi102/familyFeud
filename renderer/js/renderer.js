@@ -3,9 +3,11 @@ const round1Img       = document.getElementById("round1Img");
 const round2Img       = document.getElementById("round2Img");
 const round3Img       = document.getElementById("round3Img");
 const redXImg         = document.getElementById("xImg");
+const winnerImg       = document.getElementById("winnerImg");
 const familyFeudAudio = document.getElementById("familyFeudAudio");
 const fFXAudio        = document.getElementById("familyFeudXAudio");
 const fFYAudio        = document.getElementById("familyFeudYAudio");
+const winnerAudio     = document.getElementById("winnerAudio");
 const gameBoard       = document.getElementById("gameBoard");
 const guesses         = document.getElementById("guesses");
 const guess           = document.getElementById("myGuess");
@@ -68,6 +70,7 @@ function introduceRound()
         round3Img.style.display = 'inline';
     }
     familyFeudAudio.addEventListener('ended', () => {displayRound()});
+    //displayRound();
 }
 
 function submitPoints(familyId){
@@ -96,6 +99,8 @@ function submitPoints(familyId){
         {
             question.value = "Congratulations! Family 2 !"
         }
+        winnerAudio.play();
+        winnerImg.style.display = 'block';
     }
     
 }
