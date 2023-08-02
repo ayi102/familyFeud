@@ -841,6 +841,7 @@ video {
   border-radius: 12px;
   width: 450px;
   cursor: pointer;
+  z-index: 11;
 }
 
 .bt-play a {
@@ -1001,4 +1002,32 @@ video {
   left: 12%;
   animation: fadeIn 10s;
   z-index: 10;
+}
+
+.bonus-container {
+  display: none;
+  grid-template-columns: auto auto auto auto;
+  background-color: #2196F3;
+  grid-gap: 20px;
+  padding: 10px;
+  position: absolute;
+  top: 35%;
+  left: 20%;
+}
+
+.bonus-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  width: 450px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.bonus-score {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  width: 100px;
+  font-size: 30px;
+  text-align: center;
 }

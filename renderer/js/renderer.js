@@ -2,6 +2,7 @@ const startBtn        = document.getElementById("startBtn");
 const round1Img       = document.getElementById("round1Img");
 const round2Img       = document.getElementById("round2Img");
 const round3Img       = document.getElementById("round3Img");
+const round4Img       = document.getElementById("bonusRoundImg");
 const redXImg         = document.getElementById("xImg");
 const winnerImg       = document.getElementById("winnerImg");
 const familyFeudAudio = document.getElementById("familyFeudAudio");
@@ -9,6 +10,7 @@ const fFXAudio        = document.getElementById("familyFeudXAudio");
 const fFYAudio        = document.getElementById("familyFeudYAudio");
 const winnerAudio     = document.getElementById("winnerAudio");
 const gameBoard       = document.getElementById("gameBoard");
+const bonusBoard      = document.getElementById("bonusBoard");
 const guesses         = document.getElementById("guesses");
 const guess           = document.getElementById("myGuess");
 const questions       = document.getElementById("questions");
@@ -41,6 +43,7 @@ startBtn.addEventListener("click", () => {introduceRound()});
 family1Btn.addEventListener("click", () => {submitPoints(1)});
 family2Btn.addEventListener("click", () => {submitPoints(2)});
 guesses.addEventListener("keypress", (e) => {parseInput(e)});
+familyFeudAudio.addEventListener('ended', displayRound);
 
 
 // Functions
@@ -49,6 +52,7 @@ guesses.addEventListener("keypress", (e) => {parseInput(e)});
 function introduceRound()
 {
     // Add a listener to detect that the animation ended
+    winnerAudio.pause();
     familyFeudAudio.play();
     family1Btn.style.display            = 'none';
     family2Btn.style.display            = 'none';
@@ -56,6 +60,9 @@ function introduceRound()
     gameBoard.style.display             = 'none';
     questions.style.display             = 'none';
     document.body.style.backgroundImage = 'none';
+    winnerImg.style.display             = 'none';
+    family1ScoreDiv.style.display       = 'none';
+    family2ScoreDiv.style.display       = 'none';
 
     if(familyFeudGamePlay.currRound === 1)
     {
@@ -69,8 +76,16 @@ function introduceRound()
     {
         round3Img.style.display = 'inline';
     }
-    familyFeudAudio.addEventListener('ended', () => {displayRound()});
-    //displayRound();
+    else if(familyFeudGamePlay.currRound === 4)
+    {
+        round4Img.style.display = 'inline';
+    }
+
+    if(parseInt(familyFeudGamePlay.currRound) >= 4)
+    {
+        familyFeudAudio.removeEventListener('ended', displayRound);
+        familyFeudAudio.addEventListener('ended', displayFinalRound);
+    }
 }
 
 function submitPoints(familyId){
@@ -80,7 +95,7 @@ function submitPoints(familyId){
     family1Score.value = String(familyFeudGamePlay.fam1Subtotal);
     family2Score.value = String(familyFeudGamePlay.fam2Subtotal);
 
-    if(familyFeudGamePlay.currRound < 4)
+    if(parseInt(familyFeudGamePlay.currRound) < 4)
     {
         introduceRound();
     }
@@ -93,20 +108,30 @@ function submitPoints(familyId){
         family2ScoreDiv.style.display = 'block';
         if(parseInt(family1Score.value) > parseInt(family2Score.value))
         {
-            question.value = "Congratulations! Family 1 !"
+            question.value = "Congratulations! Family 1 !";
         }
         else
         {
-            question.value = "Congratulations! Family 2 !"
+            question.value = "Congratulations! Family 2 !";
         }
         winnerAudio.play();
         winnerImg.style.display = 'block';
+        startBtn.style.display  = 'block';
+        startBtn.textContent    = "Start Bonus Round";
     }
     
 }
 
-function introduceFinalRound(){
-    console.log("Final Round!");
+function displayFinalRound(){
+    familyFeudAudio.pause();
+    round1Img.style.display             = 'none';
+    round2Img.style.display             = 'none';
+    round3Img.style.display             = 'none';
+    round4Img.style.display             = 'none';
+    document.body.style.backgroundImage = "url(images/RoundBg.png)";
+    questions.style.display             = 'block';
+    question.value                      = "Final Round Total = 0";
+    bonusBoard.style.display            = 'grid';
 }
 
 // Display the round play
