@@ -124,7 +124,6 @@ class familyFeud{
         {
             for(var roundData in this.feudData[feudItem])
             {
-                console.log(roundData);
                 if(roundData !== "finalRound")
                 {
                     this.rounds.push(new Round(id,
@@ -157,6 +156,13 @@ class familyFeud{
 
         // Subtract 1 from this since the index starts at 1
         return this.rounds[this.currRound - 1].question;
+    }
+
+    checkBonusRoundAnswer(bonusQIndex, answer)
+    {
+        let ptsAndIndex = this.finalRound[bonusQIndex].checkAnswer(answer)
+
+        return ptsAndIndex[0];
     }
 
     checkRoundAnswer(answer)

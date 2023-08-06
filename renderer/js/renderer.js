@@ -5,7 +5,7 @@ const round3Img       = document.getElementById("round3Img");
 const round4Img       = document.getElementById("bonusRoundImg");
 const redXImg         = document.getElementById("xImg");
 const winnerImg       = document.getElementById("winnerImg");
-const familyFeudAudio = document.getElementById("familyFeudAudio");
+const familyFeudAudio = document.getElementById("buzzAlt");
 const fFXAudio        = document.getElementById("familyFeudXAudio");
 const fFYAudio        = document.getElementById("familyFeudYAudio");
 const winnerAudio     = document.getElementById("winnerAudio");
@@ -27,8 +27,29 @@ const family1ScoreDiv = document.getElementById("family1ScoreDiv");
 const family2ScoreDiv = document.getElementById("family2ScoreDiv");
 const family1Score    = document.getElementById("family1Score");
 const family2Score    = document.getElementById("family2Score");
+const bonusQs         = [document.getElementById("bonusQ1"),
+                        document.getElementById("bonusQ2"),
+                        document.getElementById("bonusQ3"),
+                        document.getElementById("bonusQ4"),
+                        document.getElementById("bonusQ5"),
+                        document.getElementById("bonusQ6"),
+                        document.getElementById("bonusQ7"),
+                        document.getElementById("bonusQ8"),
+                        document.getElementById("bonusQ9"),
+                        document.getElementById("bonusQ10")];
+const bonusSs         = [document.getElementById("bonusS1"),
+                         document.getElementById("bonusS2"),
+                         document.getElementById("bonusS3"),
+                         document.getElementById("bonusS4"),
+                         document.getElementById("bonusS5"),
+                         document.getElementById("bonusS6"),
+                         document.getElementById("bonusS7"),
+                         document.getElementById("bonusS8"),
+                         document.getElementById("bonusS9"),
+                         document.getElementById("bonusS10")];
 
 let familyFeudGamePlay;
+let bonusFinalScore = 0;
 
 // Setup
 window.addEventListener("DOMContentLoaded", async (event) => {
@@ -44,6 +65,11 @@ family1Btn.addEventListener("click", () => {submitPoints(1)});
 family2Btn.addEventListener("click", () => {submitPoints(2)});
 guesses.addEventListener("keypress", (e) => {parseInput(e)});
 familyFeudAudio.addEventListener('ended', displayRound);
+
+for(let i = 0; i < bonusQs.length; i++)
+{
+    bonusQs[i].addEventListener("keypress", (e) => {displayBonusScore(e, i)});
+}
 
 
 // Functions
@@ -152,6 +178,31 @@ function displayRound()
     questions.style.display             = 'block';
     family1ScoreDiv.style.display       = 'block';
     family2ScoreDiv.style.display       = 'block';
+}
+
+function displayBonusScore(e, i)
+{
+    if(e.key === "Enter")
+    {
+        let newIndex = i;
+        if(newIndex >= 5)
+        {
+            newIndex = newIndex - 5; 
+        }
+        let pts = familyFeudGamePlay.checkBonusRoundAnswer(newIndex, bonusQs[i].value);
+        if(pts > 0)
+        {
+            fFYAudio.play();
+        }
+        else
+        {
+            fFXAudio.play();
+        }
+        bonusSs[i].value = String(pts);
+        bonusFinalScore += pts;
+        question.value = "Final Round Total = ".concat(String(bonusFinalScore));
+    }
+
 }
 
 // Parse the entered key
