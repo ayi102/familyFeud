@@ -48,6 +48,7 @@ const bonusSs         = [document.getElementById("bonusS1"),
                          document.getElementById("bonusS9"),
                          document.getElementById("bonusS10")];
 const timerBtn        = document.getElementById("timerBtn");
+const timerDiv       = document.getElementById("timerDiv");
 const timerItem       = document.getElementById("timerItem");
 
 let familyFeudGamePlay;
@@ -161,6 +162,8 @@ function displayFinalRound(){
     questions.style.display             = 'block';
     question.value                      = "Final Round Total = 0";
     bonusBoard.style.display            = 'grid';
+    timerBtn.style.display              = 'block';
+    timerDiv.style.display              = 'block';
 }
 
 // Display the round play
