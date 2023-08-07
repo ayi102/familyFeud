@@ -47,6 +47,8 @@ const bonusSs         = [document.getElementById("bonusS1"),
                          document.getElementById("bonusS8"),
                          document.getElementById("bonusS9"),
                          document.getElementById("bonusS10")];
+const timerBtn        = document.getElementById("timerBtn");
+const timerItem       = document.getElementById("timerItem");
 
 let familyFeudGamePlay;
 let bonusFinalScore = 0;
@@ -65,6 +67,7 @@ family1Btn.addEventListener("click", () => {submitPoints(1)});
 family2Btn.addEventListener("click", () => {submitPoints(2)});
 guesses.addEventListener("keypress", (e) => {parseInput(e)});
 familyFeudAudio.addEventListener('ended', displayRound);
+timerBtn.addEventListener("click", () => {startTimer()});
 
 for(let i = 0; i < bonusQs.length; i++)
 {
@@ -205,6 +208,26 @@ function displayBonusScore(e, i)
 
 }
 
+let endTimer;
+function startTimer() {
+    let duration = String(timerItem.value);
+    var timer = duration, minutes, seconds;
+    endTimer = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        timerItem.value = seconds;
+
+        if (--timer < 0) {
+            clearInterval(endTimer);
+            fFXAudio.play();
+        }
+    }, 1000);
+}
+
 // Parse the entered key
 function parseInput(e)
 {
@@ -238,7 +261,7 @@ function parseInput(e)
         // Clear the guess
         guess.value = "";
     }
-}
+}   
 
 // Wrapper for requesting JSON
 async function getJson() {

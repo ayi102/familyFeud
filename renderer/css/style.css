@@ -1004,6 +1004,14 @@ video {
   z-index: 10;
 }
 
+.bonus-score {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    width: 100px;
+    font-size: 30px;
+   text-align: center;
+}
+
 .bonus-container {
   display: none;
   grid-template-columns: auto auto auto auto;
@@ -1024,10 +1032,43 @@ video {
   text-align: center;
 }
 
-.bonus-score {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  width: 100px;
+.bt-timerBtn {
+  background-color: #021d50;
+  position: absolute;
+  top: 10%;
+  left:15%;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 12px;
+  width: 120px;
+  cursor: pointer;
+}
+
+.bt-timerBtn a {
+  display: none;
+  padding: 10px;
+}
+
+.timer-container{
+  display: none;
+  background-color: transparent;
+  padding: 0px;
+  position: absolute;
+  top: 8%;
+  left: 5%;
+  border-radius: 12px;
+  border-color: black;
+  border-width: 5px;
+}
+
+.timer-item{
+  margin: auto;
+  padding: 10px;
+  width: 150px;  
   font-size: 30px;
   text-align: center;
+  background-color: black;
+  color: red;
 }
